@@ -32,3 +32,55 @@
   /* width: 110px; */
   transform: scale(0.9);
 }
+
+.linn {
+  font-size: 20px;
+  font-weight: bold;
+  margin: 5px;
+}
+
+.linn:hover {
+  color: #e3068c;
+  border-bottom: 3px solid #e3068c;
+  cursor: pointer;
+}
+
+.linn-aktiivne {
+  font-size: 20px;
+  font-weight: bold;
+  margin: 5px;
+  border-bottom: 3px solid #e3068c;
+}
+
+.linn-aktiivne:hover {
+  color: #e3068c;
+  cursor: pointer;
+}
+
+.hind {
+  color: rgb(78, 75, 102, .6);
+  border: none;
+
+  background-color: white;
+  font-size: 40px;
+  font-weight: 700;
+  margin: 2px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.hind-aktiivne {
+  color: #e3068c;
+  border: 2px solid #e3068c;
+  
+  background-color: white;
+  font-size: 40px;
+  font-weight: 700;
+  margin: 2px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.sinine {
+  color: blue;
+}
