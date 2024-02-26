@@ -1,28 +1,44 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { Link } from "react-router-dom";
 
 function LisaToode() {
   const [sonum, uuendaSonum] = useState("");
+  const inputiLuger = useRef();
+  const kategooriaLuger = useRef();
+
+  const lisa = () => {
+    if (inputiLuger.current.value === "") {
+      uuendaSonum("Tühja nimetusega ei saa toodet lisada!");
+    } else {
+      uuendaSonum(
+        "Toode lisatud: " + 
+        inputiLuger.current.value + 
+        ". Kategooria - " + 
+        kategooriaLuger.current.value
+      );
+    }
+  }
+
+  // function lisa() {
+
+  // }
 
   return (
     <div>
       <div>LisaToode</div>
       <div>
-        <h1>The input element</h1>
-        {/* <form action='#'> */}
-          <label for='fname'>First name: </label>
-          <input type='text' id='fname' name='fname' />
+          <label>Toote nimi: </label>
+          <input ref={inputiLuger} type='text' />
           <br /> <br />
-          <label for='lname'>Last name: </label>
-          <input type='text' id='lname' name='lname' />
+          <label>Toote kategooria: </label>
+          <input ref={kategooriaLuger} type='text' />
           <br /> <br />
-          <input onClick={() => uuendaSonum("Toode on valesti sisestatud!")} type='submit' value='Submit' />
-        {/* </form> */}
+          <button onClick={lisa}>Sisesta</button>
         <p style={{color: "red", backgroundColor: "lightgray"}}>
           {sonum}
         </p>
       </div>
-      <Link to='/avaleht'>
+      <Link to='/'>
         <button>Tagasi</button>
       </Link>
     </div>

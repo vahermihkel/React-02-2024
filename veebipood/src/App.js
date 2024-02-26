@@ -14,7 +14,7 @@ import NotFound from './pages/NotFound';
 function App() {
   return (
     <div className="App">
-      <Link to="/avaleht">
+      <Link to="/">
         <img className="pilt" src="https://upload.wikimedia.org/wikipedia/en/9/99/Nobe_GT100.jpg" alt="Nobe elektriauto" />    
       </Link>
 
@@ -43,7 +43,7 @@ function App() {
       </Link>
 
       <Routes>
-        <Route path="avaleht" element={ <Avaleht /> }  />
+        <Route path="" element={ <Avaleht /> }  />
         <Route path="esindused" element={ <Esindused /> }  />
         <Route path="arikliendile" element={ <Ariklient /> }  />
         <Route path="osta-kinkekaart" element={ <Kinkekaart /> }  />

@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
+import 'react-toastify/dist/ReactToastify.css';
+import './index.css'; // siin saab midagi React Toastify sees üle kirjutada
 import App from './App';
 // import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from "react-router-dom";
