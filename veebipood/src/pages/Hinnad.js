@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
 import hinnadJSON from "../data/hinnad.json";
 
 function Hinnad() {
@@ -40,16 +40,23 @@ function Hinnad() {
     setHinnad(vastus);
   }
 
-  const hindRef = useRef(); // import!
-
-  const lisaHind = () => {
-    hinnad.push(hindRef.current.value);
-    setHinnad(hinnad.slice());
+  const arvutaKokku = () => {
+    let summa = 0;
+    // summa = summa + 6;
+    // summa = summa + 12;
+    // summa = summa + 55
+    // summa = summa + 123;
+    // summa += 8;
+    // summa += 41;
+    // summa += 2345;
+    hinnad.forEach(hind => summa = summa + hind);
+    return summa;
   }
 
   return (
     <div>
-      <div>Hindade koguarv: {hinnad.length}</div>
+      <div>Hindade kogusumma: {arvutaKokku()} €</div>
+      <div>Hindade koguarv: {hinnad.length} tk</div>
       <button onClick={originaali}>Originaali</button>
       <button onClick={() => setHinnad([])}>Peida ajutiselt</button>
       <br /><br />
@@ -66,10 +73,6 @@ function Hinnad() {
 
       <br /><br />
 
-      <label>Uus hind</label>
-      <input ref={hindRef} type="text" />
-      <button onClick={lisaHind}>Lisa</button>
-
       {hinnad.map((hind,index) => 
         <div key={index}>
           {hind}
@@ -82,3 +85,18 @@ export default Hinnad
 // index:  0   1   2   3   4  5     6
 // hind:   6  12  55  123  8  41  2345
 //        [6, 12, 55, 123, 8, 41, 2345]
+
+
+  // Kui kutsun funktsiooni välja mittesündmusega, siis panen sulud lõppu
+  //  <div>Hindade kogusumma: {arvutaKokku()} €</div>
+  // ÕIGE: {arvutaKokku()}
+  // VALE: {arvutaKokku}    {() => arvutaKokku()}
+  // EHK --> paneb kohe käima
+
+  // Kui kutsun funktsiooni välja sündmusega (klikk, nupuvajutus)
+  //<button onClick={() => setHinnad([])}>Peida ajutiselt</button>
+  // ÕIGE: onClick={arvutaKokku}    onClick={() => arvutaKokku()}
+  // VALE: onClick={arvutaKokku()}
+  
+  // Kui saadan midagi kaasa: onClick={() => arvutaKokku(SAADAN_MIDAGI)}
+  // Kui ei saada midagi kaasa: onClick={arvutaKokku()}

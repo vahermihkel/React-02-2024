@@ -82,6 +82,8 @@ function Esindused() {
     setKeskused(keskused.slice());
   }
 
+  // Esindused tähemärkide kokkuliitmine
+
   return (
     <div>
       <div>Esindused</div>

@@ -1,5 +1,6 @@
 import React, { useRef, useState } from "react";
 import { Link } from "react-router-dom";
+import tootedFailist from "../data/tooted.json";
 
 function LisaToode() {
   const [sonum, uuendaSonum] = useState("");
@@ -16,6 +17,7 @@ function LisaToode() {
         ". Kategooria - " + 
         kategooriaLuger.current.value
       );
+      tootedFailist.push(inputiLuger.current.value);
     }
   }
 

@@ -45,28 +45,38 @@ function Tootajad() {
   }
  
   const filtreeri3T2helised = () => {
-    const vastus = tootajad.filter(tootajad => tootajad.length === 3);
+    const vastus = tootajad.filter(tootaja => tootaja.length === 3);
     setTootajad(vastus);
   };
  
   const filtreeriRohT2helised = () => {
-    const vastus = tootajad.filter(tootajad => tootajad.length >= 5);
+    const vastus = tootajad.filter(tootaja => tootaja.length >= 5);
     setTootajad(vastus);
   };
  
   const filtreeriAiSisaldavad = () => {
-    const vastus = tootajad.filter(tootajad => tootajad.includes('ai'));
+    const vastus = tootajad.filter(tootaja => tootaja.includes('ai'));
     setTootajad(vastus);
   };
  
   const filtreeriKelKolmasT2htI = () => {
-    const vastus = tootajad.filter(tootajad => tootajad[2] === 'i')
+    const vastus = tootajad.filter(tootaja => tootaja[2] === 'i')
     setTootajad(vastus);
   };
  
   const filtreeriAlgabTahtA = () => {
-    const vastus = tootajad.filter(tootajad => tootajad.startsWith('A'))
+    const vastus = tootajad.filter(tootaja => tootaja.startsWith('A'))
     setTootajad(vastus);
+  }
+
+  const arvutaKokku = () => {
+    let summa = 0;
+    // ["Urmet", "Kaido", "Liina"].forEach( => )
+    // forEach("Urmet" =>   5 =  0 + 5 )
+    // forEach("Kaidon" => 11 =  5 + 6 )
+    // forEach("Ave" =>    14 = 11 + 3 )
+    tootajad.forEach(tootaja => summa = summa + tootaja.length);
+    return summa;
   }
  
   return (
@@ -79,6 +89,7 @@ function Tootajad() {
         ))}
       </ul>
  
+      <div>Kokku on töötajate peale {arvutaKokku()} tähemärki</div>
       {/* Näitab töötajate koguarvu */}
       <div>Kokku on {tootajad.length} töötajat.</div>
  

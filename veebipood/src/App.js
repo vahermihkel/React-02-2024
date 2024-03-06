@@ -16,6 +16,9 @@ import HaldaTooted from './pages/HaldaTooted';
 import HaldaEsindused from './pages/HaldaEsindused';
 import HaldaHinnad from './pages/HaldaHinnad';
 import HaldaTootajad from './pages/HaldaTootajad';
+import LisaHind from './pages/LisaHind';
+import LisaEsindus from './pages/LisaEsindus';
+import LisaTootaja from './pages/LisaTootaja';
 
 
 function App() {
@@ -35,10 +38,6 @@ function App() {
 
       <Link to="/osta-kinkekaart">
         <button className="nupp">Kinkekaart</button>  
-      </Link>
-
-      <Link to='/lisa-toode'>
-        <button className='nupp'>Lisa toode</button>
       </Link>
 
       <Link to='/ostukorv'>
@@ -61,6 +60,8 @@ function App() {
         <button className='nupp'>Tooted</button>
       </Link>
 
+      <br /><br />
+
       <Link to='/halda-tooted'>
         <button className='nupp'>Halda tooteid</button>
       </Link>
@@ -75,6 +76,22 @@ function App() {
 
       <Link to='/halda-tootajad'>
         <button className='nupp'>Halda töötajaid</button>
+      </Link>
+
+      <Link to='/lisa-toode'>
+        <button className='nupp'>Lisa toode</button>
+      </Link>
+
+      <Link to='/lisa-hind'>
+        <button className='nupp'>Lisa hind</button>
+      </Link>
+
+      <Link to='/lisa-esindus'>
+        <button className='nupp'>Lisa esindus</button>
+      </Link>
+
+      <Link to='/lisa-tootaja'>
+        <button className='nupp'>Lisa töötaja</button>
       </Link>
 
       <Routes>
@@ -92,6 +109,9 @@ function App() {
         <Route path="halda-esindused" element={ <HaldaEsindused /> }  />
         <Route path="halda-hinnad" element={ <HaldaHinnad /> }  />
         <Route path="halda-tootajad" element={ <HaldaTootajad /> }  />
+        <Route path="lisa-hind" element={ <LisaHind /> }  />
+        <Route path="lisa-esindus" element={ <LisaEsindus /> }  />
+        <Route path="lisa-tootaja" element={ <LisaTootaja /> }  />
         <Route path="*" element={ <NotFound /> }  />
       </Routes>
     </div>
