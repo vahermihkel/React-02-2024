@@ -11,7 +11,10 @@ function LisaHind() {
       return;
     }
 
-    hinnadJSON.push(Number(hindRef.current.value));
+    hinnadJSON.push({
+      "number": Number(hindRef.current.value), 
+      "lisaja": "Mihkel"
+    });
     //setHinnad(hinnad.slice());
     hindRef.current.value = "";
     toast.success("Hind edukalt lisatud!");

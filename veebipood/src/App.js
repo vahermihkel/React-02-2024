@@ -19,6 +19,14 @@ import HaldaTootajad from './pages/HaldaTootajad';
 import LisaHind from './pages/LisaHind';
 import LisaEsindus from './pages/LisaEsindus';
 import LisaTootaja from './pages/LisaTootaja';
+import YksTootaja from './pages/YksTootaja';
+import YksEsindus from './pages/YksEsindus';
+import YksHind from './pages/YksHind';
+import YksToode from './pages/YksToode';
+import MuudaToode from './pages/MuudaToode';
+import MuudaTootaja from './pages/MuudaTootaja';
+import MuudaEsindus from './pages/MuudaEsindus';
+import MuudaHind from './pages/MuudaHind';
 
 
 function App() {
@@ -112,6 +120,16 @@ function App() {
         <Route path="lisa-hind" element={ <LisaHind /> }  />
         <Route path="lisa-esindus" element={ <LisaEsindus /> }  />
         <Route path="lisa-tootaja" element={ <LisaTootaja /> }  />
+        <Route path="tootaja/:index" element={ <YksTootaja /> }  />
+        <Route path="esindus/:index" element={ <YksEsindus /> }  />
+        <Route path="hind/:index" element={ <YksHind /> }  />
+        <Route path="toode/:index" element={ <YksToode /> }  />
+
+        <Route path="muuda-tootaja/:indeks" element={ <MuudaTootaja /> }  />
+        <Route path="muuda-esindus/:indeks" element={ <MuudaEsindus /> }  />
+        <Route path="muuda-hind/:indeks" element={ <MuudaHind /> }  />
+        <Route path="muuda-toode/:indeks" element={ <MuudaToode /> }  />
+
         <Route path="*" element={ <NotFound /> }  />
       </Routes>
     </div>
@@ -119,3 +137,13 @@ function App() {
 }
 
 export default App;
+
+// KOJU:
+// Muuda + Yks kõik failid ära teha
+// Keerake ka kõik objektideks
+//[{"nimi": "Urmet", "amet": "", "tel": "", "email": ""}, "Kaido", "Liina", "Maiki", "Heidi", "Epp", "Kaire", "Anet", "Maarja", "Ave", "Annika"]
+//[{"nimi": "Ülemiste", "aadress": "", "tel": ""}, "Viimsi", "Rocca al Mare", "Magistrali", "Vesse", "Kristiine", "Järveotsa"]
+
+// 13.03 K kell 9.00  
+// ostukorvi lisamise võimekus. ostukorvi kogusumma. avalehel toodete filtreerimine
+// uus ENG projekt -> kujundus. Bootstrap. Tõlge: i18next.

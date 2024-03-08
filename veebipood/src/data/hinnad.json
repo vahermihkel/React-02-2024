@@ -1,1 +1,9 @@
-[6, 12, 55, 123, 8, 41, 2345]
+[
+  {"number": 6, "lisaja": "Mihkel"}, 
+  {"number": 12, "lisaja": "Mihkel"}, 
+  {"number": 55, "lisaja": "Mihkel"}, 
+  {"number": 123, "lisaja": "Mihkel"}, 
+  {"number": 8, "lisaja": "Mihkel"}, 
+  {"number": 41, "lisaja": "Mihkel"}, 
+  {"number": 2345, "lisaja": "Mihkel"}
+]

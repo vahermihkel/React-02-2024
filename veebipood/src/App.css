@@ -92,3 +92,8 @@
 .ostukorv img {
   width: 100px;
 }
+
+.pilt-mitteaktiivne {
+  width: 100px;
+  filter: grayscale(100%);
+}

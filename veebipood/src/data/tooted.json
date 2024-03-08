@@ -1,1 +1,11 @@
-["Nobe", "Tesla", "BMW"]
+[
+  {"nimi": "Nobe", "hind": 25000, "aktiivne": true, "pilt": "https://visionest.institute/wp-content/uploads/2023/07/i_6_NOBE-3.jpg"}, 
+  {"nimi": "Nissan", "hind": 45000, "aktiivne": true, "pilt": "https://cars.usnews.com/static/images/Auto/izmo/i159615630/2023_nissan_sentra_angularfront.jpg"}, 
+  {"nimi": "Tesla", "hind": 85000, "aktiivne": false, "pilt": "https://cdn.motor1.com/images/mgl/Mk3qg6/s3/2017-tesla-roadster-deck-model-petersen-automotive-museum.jpg"}, 
+  {"nimi": "Toyota", "hind": 35000, "aktiivne": false, "pilt": "https://imgd.aeplcdn.com/1280x720/n/cw/ec/124027/urban-cruiser-hyryder-exterior-right-front-three-quarter-72.jpeg?isig=0&q=80"}, 
+  {"nimi": "BMW", "hind": 55000, "aktiivne": true, "pilt": "https://imgd.aeplcdn.com/642x336/n/cw/ec/132513/7-series-exterior-right-front-three-quarter-3.jpeg"},
+  {"nimi": "Bentley", "hind": 155000, "aktiivne": true, "pilt": "https://tallinn.bentleymotors.com/picserver1/userdata/1/31595/3FAdVwEMPE/dws%20600x300%20king%20fisher%20flying%20spur%20mulliner.png"},
+  {"nimi": "Bentley", "hind": 155000, "aktiivne": true, "pilt": "https://tallinn.bentleymotors.com/picserver1/userdata/1/31595/3FAdVwEMPE/dws%20600x300%20king%20fisher%20flying%20spur%20mulliner.png"},
+  {"nimi": "Bentley", "hind": 155000, "aktiivne": true, "pilt": "https://tallinn.bentleymotors.com/picserver1/userdata/1/31595/3FAdVwEMPE/dws%20600x300%20king%20fisher%20flying%20spur%20mulliner.png"},
+  {"nimi": "Bentley", "hind": 155000, "aktiivne": true, "pilt": "https://tallinn.bentleymotors.com/picserver1/userdata/1/31595/3FAdVwEMPE/dws%20600x300%20king%20fisher%20flying%20spur%20mulliner.png"}
+]
