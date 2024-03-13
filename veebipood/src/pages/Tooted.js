@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import tootedFailist from '../data/tooted.json'
 import { Link } from 'react-router-dom';
+import ostukorvFailist from '../data/ostukorv.json'
+import { ToastContainer, toast } from 'react-toastify';
  
 function Tooted() {
   // Andmete algväärtus
@@ -17,11 +19,42 @@ function Tooted() {
     tooted.sort((a, b) => b.localeCompare(a));
     setTooted(tooted.slice());
   };
+
+  // const filtreeriNgaAlgavad = () => {
+  //   const vastus = tootedFailist.filter(toode => toode.nimi.startsWith("N"));
+  //   setTooted(vastus);
+  // }
+
+  // const filtreeriBgaAlgavad = () => {
+  //   const vastus = tootedFailist.filter(toode => toode.nimi.startsWith("B"));
+  //   setTooted(vastus);
+  // }
+
+  // const filtreeriTgaAlgavad = () => {
+  //   const vastus = tootedFailist.filter(toode => toode.nimi.startsWith("T"));
+  //   setTooted(vastus);
+  // }
+
+  const filtreeriAlgusTaheJargi = (algustaht) => {
+    const vastus = tootedFailist.filter(toode => toode.nimi.startsWith(algustaht));
+    setTooted(vastus);
+  }
+
+  const lisaOstukorvi = (lisatavToode) => {
+    ostukorvFailist.push(lisatavToode);
+    toast.success("Edukalt ostukorvi lisatud!");
+  }
  
   return (
     <div>
       <h2>Tooted</h2>
       {/* Väljastame tooted */}
+      {/* <button onClick={filtreeriNgaAlgavad}>Jäta alles Nga algavad</button>
+      <button onClick={filtreeriBgaAlgavad}>Jäta alles Bga algavad</button>
+      <button onClick={filtreeriTgaAlgavad}>Jäta alles Tga algavad</button> */}
+      <button onClick={() => filtreeriAlgusTaheJargi("N")}>Jäta alles Nga algavad</button>
+      <button onClick={() => filtreeriAlgusTaheJargi("B")}>Jäta alles Bga algavad</button>
+      <button onClick={() => filtreeriAlgusTaheJargi("T")}>Jäta alles Tga algavad</button>
       <ul>
         {tooted.map((toode, index) => (
           <div key={index}>
@@ -36,6 +69,7 @@ function Tooted() {
             <Link to={"/toode/" + index}>
               <button>Vaata lähemalt</button>
             </Link>
+            <button disabled={toode.aktiivne === false} onClick={() => lisaOstukorvi(toode)}>Lisa ostukorvi</button>
           </div>
         ))}
       </ul>
@@ -44,6 +78,7 @@ function Tooted() {
       {/* Nupud sorteerimiseks */}
       <button onClick={sorteeriAZ}>Sorteeri A-Z</button>
       <button onClick={sorteeriZA}>Sorteeri Z-A</button>
+      <ToastContainer />
     </div>
   );
 }

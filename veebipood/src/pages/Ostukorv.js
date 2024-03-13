@@ -1,12 +1,24 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import ostukorvFailist from "../data/ostukorv.json";
 
 function Ostukorv() {
-  const [ostukorv, setOstukorv] = useState(["Coca","Fanta","Sprite"]);
+  const [ostukorv, setOstukorv] = useState(ostukorvFailist);
 
   const kustutaOstukorvist = (jrknr) => {
-    ostukorv.splice(jrknr, 1); 
-    setOstukorv(ostukorv.slice());
+    ostukorvFailist.splice(jrknr, 1); 
+    setOstukorv(ostukorvFailist.slice());
+  }
+
+  const lisaOstukorvi = (toode) => {
+    ostukorvFailist.push(toode);
+    setOstukorv(ostukorvFailist.slice());
+  }
+
+  const arvutaKogusumma = () => {
+    let summa = 0;
+    ostukorv.forEach(toode => summa = summa + toode.hind);
+    return summa;
   }
 
   return (
@@ -23,14 +35,17 @@ function Ostukorv() {
       </div>}
 
       <button onClick={() => setOstukorv([])}>Tühjenda</button>
-      <button onClick={() => setOstukorv(["Coca", "Fanta"])}>Jäta alles Coca ja Fanta</button>
+      {/* <button onClick={() => setOstukorv(["Coca", "Fanta"])}>Jäta alles Coca ja Fanta</button> */}
 
       <div>{ostukorv.map((toode, jrknr) => 
         <div key={jrknr}>
-          {toode}
+          {toode.nimi} {toode.hind}€
           <button onClick={() => kustutaOstukorvist(jrknr)}>x</button>
+          <button onClick={() => lisaOstukorvi(toode)}>Lisa lõppu</button>
         </div> )}
       </div>
+
+      <div>Summa: {arvutaKogusumma()} €</div>
 
       <Link to='/'>
         <button>Tagasi</button>
