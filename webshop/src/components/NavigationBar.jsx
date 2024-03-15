@@ -7,13 +7,18 @@ import { useTranslation } from 'react-i18next';
 function NavigationBar() {
   const { t, i18n } = useTranslation();
 
-  const changeLangEn = () => {
-    i18n.changeLanguage("en");
-  }
+  // const changeLangEn = () => {
+  //   i18n.changeLanguage("en");
+  // }
 
-  const changeLangEe = () => {
-    i18n.changeLanguage("ee");
-  }
+  // const changeLangEe = () => {
+  //   i18n.changeLanguage("ee");
+  // }
+
+  const changeLang = (lang) => {
+		i18n.changeLanguage(lang); // tänu sellele et installisime react-18next mooduli
+    localStorage.setItem("language", lang); // see on JavaScripti juba sisse kirjutatud
+	};
 
   return (
     <Navbar collapseOnSelect expand="lg" className="bg-body-tertiary">
@@ -28,8 +33,8 @@ function NavigationBar() {
             <Nav.Link as={Link} to="/cart">{t("cart")}</Nav.Link>
           </Nav>
           <Nav>
-            <img onClick={changeLangEn} className="lang" src="/english.png" alt="" />
-            <img onClick={changeLangEe} className="lang" src="/estonian.png" alt="" />
+            <img onClick={() => changeLang("en")} className="lang" src="/english.png" alt="" />
+            <img onClick={() => changeLang("ee")} className="lang" src="/estonian.png" alt="" />
             <Nav.Link as={Link} to="/login">{t("login")}</Nav.Link>
             <Nav.Link as={Link} to="/signup">{t("signup")}</Nav.Link>
           </Nav>
