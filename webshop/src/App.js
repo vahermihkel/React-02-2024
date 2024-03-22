@@ -77,3 +77,9 @@ export default App;
 //    HomePage.jsx sisse tehke nupp "Vt lähemalt", 
 //          millega läheb SingleProduct.jsx vaatesse
 // SingleProduct.jsx lehel kuvage välja kõik toote omadused
+
+
+// 20.03 - 9.00-10.15 --> 1h15min, puudu jäi 1h45min 
+// 22.03 - 9.00-12.15 --> KOJU: failid lõpetada, EditProduct, checkIdUniqueness editis
+// 27.03 - 9.00-12.15 --> Vaatame üle Bakery-Shopi. KOJU: proovitöö Nortal Winter University
+// 29.03 - 9.00-12.15 --> Shipments proovitöö.

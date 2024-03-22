@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react'
 
-function Supplier() {
+function Supplier() {                   // {} -> []
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
     fetch("https://fakestoreapi.com/products")
       .then(response => response.json())
-      .then(json => setProducts(json))
+      .then(json => setProducts(json)) // siin midagi rohkemat
   }, []);
 
   if (products.length === 0) {

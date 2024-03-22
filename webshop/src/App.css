@@ -16,3 +16,13 @@
 .lang:active {
   padding: 1px;
 }
+
+.active {
+  background-color: rgb(237, 248, 237);
+  border: 1px solid green;
+}
+
+.inactive {
+  background-color: rgb(246, 234, 234);
+  border: 1px solid red;
+}   
