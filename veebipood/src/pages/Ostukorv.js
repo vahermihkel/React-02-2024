@@ -1,11 +1,21 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import ostukorvFailist from "../data/ostukorv.json";
+import { useDispatch } from "react-redux";
+import { add, deduct, empty } from "../store/kogusumma";
 
 function Ostukorv() {
   const [ostukorv, setOstukorv] = useState(ostukorvFailist);
+  const dispatch = useDispatch();
+
+  const tyhjenda = () => {
+    ostukorvFailist.splice(0); 
+    setOstukorv(ostukorvFailist.slice());
+    dispatch(empty());
+  }
 
   const kustutaOstukorvist = (jrknr) => {
+    dispatch(deduct(ostukorvFailist[jrknr].hind));
     ostukorvFailist.splice(jrknr, 1); 
     setOstukorv(ostukorvFailist.slice());
   }
@@ -13,6 +23,7 @@ function Ostukorv() {
   const lisaOstukorvi = (toode) => {
     ostukorvFailist.push(toode);
     setOstukorv(ostukorvFailist.slice());
+    dispatch(add(toode.hind));
   }
 
   const arvutaKogusumma = () => {
@@ -34,7 +45,7 @@ function Ostukorv() {
         <p>Ostukorv on hetkel tühi.</p>
       </div>}
 
-      <button onClick={() => setOstukorv([])}>Tühjenda</button>
+      <button onClick={tyhjenda}>Tühjenda</button>
       {/* <button onClick={() => setOstukorv(["Coca", "Fanta"])}>Jäta alles Coca ja Fanta</button> */}
 
       <div>{ostukorv.map((toode, jrknr) => 

@@ -1,42 +1,55 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { Spinner } from 'react-bootstrap';
 import { ToastContainer} from 'react-toastify'
+import useFetchProducts from '../../util/useFetchProducts';
 // import productFile from '../../data/products.json'
 
 
 function AddProduct() {
-  const [message, updateMessage] = useState(""); 
-  const [idUnique, setIdUnique] = useState(false);
+  const [message, updateMessage] = useState<string>(""); 
+  const [idUnique, setIdUnique] = useState<boolean>(false);
 
-  const idRef = useRef();
-  const titleRef = useRef(); 
-  const priceRef = useRef();
-  const imageRef = useRef(); 
-  const descriptionRef = useRef();
-  const categoryRef = useRef();
+  const idRef = useRef<HTMLInputElement>(null);
+  const titleRef = useRef<HTMLInputElement>(null); 
+  const priceRef = useRef<HTMLInputElement>(null);
+  const imageRef = useRef<HTMLInputElement>(null); 
+  const descriptionRef = useRef<HTMLInputElement>(null);
+  const categoryRef = useRef<HTMLSelectElement>(null);
 
-  const [categories, setCategories] = useState([]);
+  const [categories, setCategories] = useState<any[]>([]);
 
-  const [dbProducts, setDbProducts] = useState([]);
+  // const [dbProducts, setDbProducts] = useState([]);
 
-  const [isLoading, setLoading] = useState(true);
+  // const [isLoading, setLoading] = useState(true);
+
+  // useEffect(() => {
+  //   fetch(process.env.REACT_APP_PRODUCTS_URL)
+  //     .then(res => res.json())
+  //     .then(data => {
+  //       setDbProducts(data || []);
+  //       setLoading(false);
+  //     })
+  // }, []);
+
+  const {dbProducts, isLoading} = useFetchProducts();
 
   useEffect(() => {
-    fetch(process.env.REACT_APP_PRODUCTS_URL)
-      .then(res => res.json())
-      .then(data => {
-        setDbProducts(data || []);
-        setLoading(false);
-      })
-  }, []);
-
-  useEffect(() => {
-    fetch(process.env.REACT_APP_CATEGORIES_URL)
+    const url = process.env.REACT_APP_CATEGORIES_URL;
+    if (url === undefined) {
+      return;
+    }
+    fetch(url)
       .then(res => res.json())
       .then(data => setCategories(data || []))
   }, []);
 
   const addProduct = () => { 
+    if (titleRef.current === null || priceRef.current === null ||
+      idRef.current === null || imageRef.current === null ||
+      descriptionRef.current === null || categoryRef.current === null
+    ) {
+      return;
+    }
     if (titleRef.current.value === "") { 
       updateMessage('Cannot add a product with an empty name!'); 
       return;
@@ -54,16 +67,25 @@ function AddProduct() {
         description: descriptionRef.current.value,
         category: categoryRef.current.value,
         image: imageRef.current.value,
+        active: false,
         rating: {
           rate: 0,
           count: 0,
         },
     });
-    fetch(process.env.REACT_APP_PRODUCTS_URL, {"method": "PUT", "body": JSON.stringify(dbProducts)})
+    const url = process.env.REACT_APP_CATEGORIES_URL;
+    if (url === undefined) {
+      return;
+    }
+    fetch(url, {"method": "PUT", "body": JSON.stringify(dbProducts)})
   }
 
   const checkIdUniqueness = () => {
-    const index = dbProducts.findIndex(product => product.id === Number(idRef.current.value));
+    const idInput = idRef.current;
+    if (idInput === null) {
+      return;
+    }
+    const index = dbProducts.findIndex(product => product.id === Number(idInput.value));
     if (index === -1) { // index >= 0
       // ei leitud -> positiivne tulemus meie jaoks
       setIdUnique(true); // ---> nupp ei ole disabled

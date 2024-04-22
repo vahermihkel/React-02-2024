@@ -1,19 +1,25 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 // import cartFromFile from '../../data/cart.json';
 import "../../css/Cart.css";
 // import Icon from '@mui/material/Icon';
 import Grade from '@mui/icons-material/Grade';
-import ParcelMachines from '../../components/ParcelMachines';
+import ParcelMachines from '../../components/cart/ParcelMachines';
+import Payment from '../../components/cart/Payment';
+import { CartSumContext } from '../../store/CartSumContext';
+import { calculateTotal } from '../../util/calculationUtil';
 // import Star from '@mui/icons-material/Star';
+// import { calculateTotal } from "../../util/calculationUtil"
 
 function Cart() {
 	const [products, setProducts] = useState(JSON.parse(localStorage.getItem("cart")) || []);
- 
+  const { setCartSum } = useContext(CartSumContext);
+
 	const removeItem = (index) => {
 		products.splice(index, 1);
 		setProducts(products.slice()); // HTML uuenduseks
     localStorage.setItem("cart", JSON.stringify(products)); // LS salvestuseks
-	};
+    setCartSum(calculateTotal(products));
+  };
 
   const decreaseQuantity = (index) => {
     products[index].quantity = products[index].quantity - 1;
@@ -22,26 +28,22 @@ function Cart() {
     }
     setProducts(products.slice());
     localStorage.setItem("cart", JSON.stringify(products)); 
+    setCartSum(calculateTotal(products));
   }
 
   const increaseQuantity = (index) => {
     products[index].quantity = products[index].quantity + 1;
     setProducts(products.slice());
     localStorage.setItem("cart", JSON.stringify(products));
+    setCartSum(calculateTotal(products));
   }
 
 	const clearCart = () => {
 		products.splice(0);
 		setProducts(products.slice());
     localStorage.setItem("cart", JSON.stringify(products));
+    setCartSum(0);
 	};
-
-  const calculateTotal = () => {
-    console.log("arvutan uuesti kogusummat")
-    let sum = 0;
-    products.forEach(cp => sum = sum + cp.product.price * cp.quantity)
-    return sum.toFixed(2);
-  }
 
   const averageRating = () => {
     console.log("arvutan uuesti reitingut")
@@ -49,7 +51,6 @@ function Cart() {
     products.forEach(cp => sum = sum + cp.product.rating.rate)
     return (sum/products.length).toFixed(2);
   }
-
 
 	return (
 		<div>
@@ -84,10 +85,11 @@ function Cart() {
           {
             products.length > 0 &&
               <React.Fragment>
-                <div>Sum: {calculateTotal()} €</div>
+                <div>Sum: {calculateTotal(products)} €</div>
                 <div>Average: {averageRating()} <Grade /> </div>
 
                 <ParcelMachines />
+                <Payment sum={calculateTotal(products)} />
                 
               </React.Fragment>
           }

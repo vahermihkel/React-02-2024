@@ -3,6 +3,8 @@ import tootedFailist from '../data/tooted.json'
 import { Link } from 'react-router-dom';
 import ostukorvFailist from '../data/ostukorv.json'
 import { ToastContainer, toast } from 'react-toastify';
+import { useDispatch } from 'react-redux';
+import { add } from '../store/kogusumma'
  
 function Tooted() {
   // Andmete algväärtus
@@ -40,9 +42,12 @@ function Tooted() {
     setTooted(vastus);
   }
 
+  const dispatch = useDispatch()
+
   const lisaOstukorvi = (lisatavToode) => {
     ostukorvFailist.push(lisatavToode);
     toast.success("Edukalt ostukorvi lisatud!");
+    dispatch(add(lisatavToode.hind));
   }
  
   return (

@@ -1,8 +1,14 @@
-import React from 'react'
+import AuthForm from './AuthForm';
 
 function Login() {
   return (
-    <div>Login</div>
+    <div>
+      <AuthForm 
+        action="signInWithPassword" 
+        buttonText="Logi sisse"
+        repeatPassword={false}
+        />
+    </div>
   )
 }
 

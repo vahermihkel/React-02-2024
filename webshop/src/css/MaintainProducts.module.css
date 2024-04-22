@@ -1,0 +1,13 @@
+.active {
+  background-color: rgb(237, 248, 237);
+  border: 1px solid green;
+}
+
+.inactive {
+  background-color: rgb(246, 234, 234);
+  border: 1px solid red;
+} 
+
+.delete_btn {
+  font-size: 20px;
+}

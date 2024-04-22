@@ -1,8 +1,15 @@
-import React from 'react'
+import AuthForm from './AuthForm';
 
 function Signup() {
+
   return (
-    <div>Signup</div>
+    <div>
+      <AuthForm 
+        action="signUp" 
+        buttonText="Registreeru"
+        repeatPassword={true}  
+      />
+    </div>
   )
 }
 

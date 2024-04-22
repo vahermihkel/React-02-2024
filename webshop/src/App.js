@@ -1,4 +1,4 @@
-import { Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 import './App.css';
 import NavigationBar from './components/NavigationBar';
 import HomePage from './pages/global/HomePage';
@@ -16,8 +16,12 @@ import MaintainShops from './pages/admin/MaintainShops';
 import Login from './pages/auth/Login';
 import Signup from './pages/auth/Signup';
 import Supplier from './pages/admin/Supplier';
+import { useContext } from 'react';
+import { AuthContext } from './store/AuthContext';
 
 function App() {
+  const {loggedIn} = useContext(AuthContext);
+
   return (
     <div className="App">
       <NavigationBar />
@@ -29,13 +33,17 @@ function App() {
         <Route path='cart' element={ <Cart /> } />
         <Route path='product/:productId' element={ <SingleProduct /> } />
         
-        <Route path='admin' element={ <AdminHome /> } />
-        <Route path='admin/add-product' element={ <AddProduct /> } />
-        <Route path='admin/edit-product/:productId' element={ <EditProduct /> } />
-        <Route path='admin/maintain-products' element={ <MaintainProducts /> } />
-        <Route path='admin/maintain-categories' element={ <MaintainCategories /> } />
-        <Route path='admin/maintain-shops' element={ <MaintainShops /> } />
-        <Route path='admin/supplier' element={ <Supplier /> } />
+        {loggedIn === true ? <>
+          <Route path='admin' element={ <AdminHome /> } />
+          <Route path='admin/add-product' element={ <AddProduct /> } />
+          <Route path='admin/edit-product/:productId' element={ <EditProduct /> } />
+          <Route path='admin/maintain-products' element={ <MaintainProducts /> } />
+          <Route path='admin/maintain-categories' element={ <MaintainCategories /> } />
+          <Route path='admin/maintain-shops' element={ <MaintainShops /> } />
+          <Route path='admin/supplier' element={ <Supplier /> } />
+        </> :
+           <Route path='admin/*' element={ <Navigate to="/login" /> } />
+        }
 
         <Route path='login' element={ <Login /> } />
         <Route path='signup' element={ <Signup /> } />
@@ -48,38 +56,34 @@ function App() {
 
 export default App;
 
-// Koju: muuta index.html sees rakenduse nime ja pisipilti
-// Koju: Loo siia projekti ka 3s ja 4s keel (võid tõlkida chatGPT abiga)
-// Koju: changeLangEe ja teise 3 asemel tehke üks funktsioon, mida taaskasutatakse
-//          changeLang   -> onClick={() => changeLang("ee")}
-// Saab võtta põhja kuidas tegime eesti keelsel veebipoel 
-//        Tooted.js sees esitähe järgi filtreerimist
+// 20.03 - 9.00-10.15 --> 1h15min, puudu jäi 1h45min  
+// 13.
+// 12. 03.04
+// 13. 05.04 Alamkomponente ja andmete saatmist nende vahel (props), useContext -> globaalne muutuja
+// 14. 10.04 Sisselogimist/registreerumist / Firebase
+// 15. 12.04 Disainer
+// 16. 17.04 Custom Hook, TypeScript
+// 17. 19.04 1h45min, Redux, proovitöö Tic-tac-toe   9.00-10.45
+// 18. L 04.05  --> lõpuprojekti esitlemine   9.00-10.30
 
-// NotFound.jsx lehe korrektseks tegemine
+// KOJU:
+// Cart.css --> keerata Cart.module.css-ks ja Cart.jsx sees vastavalt muudatused
+// Uus fail: MaintainPictures.jsx -> lisada andmebaasi, kustutada andmebaasist, vaadata
+//  Pildil on järgmised omadused: {src: "", alt: "", header: "", text: ""}
 
-// MaintainProducts.jsx vaade tabeli kujul, 
-//    kuvades välja kõik toote omadused (rating võib olla huvitav)
-//    Täpselt samamoodi nagu eesti keelses
-// Kustutada failist
-
-// Cart.jsx
-// On võimalik lisada ostukorvi HomePage.jsx lehelt
-// Ostukorvis kuvatakse kõik tooted välja
-// Saab kustutada, saab tühjendada, saab lõppu juurde panna
-// Kokkuarvutus, mitu tk on
-
-// -----------------------
-
-// AddProduct.jsx
-// Võimalda toodet lisada
-
-// SingleProduct.jsx tegemine
-//    HomePage.jsx sisse tehke nupp "Vt lähemalt", 
-//          millega läheb SingleProduct.jsx vaatesse
-// SingleProduct.jsx lehel kuvage välja kõik toote omadused
+// Kujundus???
 
 
-// 20.03 - 9.00-10.15 --> 1h15min, puudu jäi 1h45min 
-// 22.03 - 9.00-12.15 --> KOJU: failid lõpetada, EditProduct, checkIdUniqueness editis
-// 27.03 - 9.00-12.15 --> Vaatame üle Bakery-Shopi. KOJU: proovitöö Nortal Winter University
-// 29.03 - 9.00-12.15 --> Shipments proovitöö.
+// Lõpuprojekt:
+// Ise nullist kõik
+// Võtta internetist mõni kujunduspõhi ja selle sisse teha
+// Võtta internetist mitu projekti ja neid omavahel siduda
+// Youtube/Udemy videot järgida
+
+// Ainuke tingimus, et oleks Reactis tehtud
+// Teine tingimus, et oleks Firebase-i üles pandud
+
+
+// Util --> ei kasuta HTMLi, ei kasuta Reacti Hooke
+// Custom Hook --> ei kasuta HTMLi, kasutab Reacti Hooke
+// Component --> kasutab HTMLi
